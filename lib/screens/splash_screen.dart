@@ -10,7 +10,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.teal,
       body: Center(
         child: Text('My Nit', style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),),
@@ -24,10 +24,10 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void splashWait() {
-    Future.delayed(Duration(seconds: 2)).then((onValue) {
+    Future.delayed(const Duration(seconds: 2)).then((onValue) {
       Navigator.of(context).pushAndRemoveUntil(
-          new MaterialPageRoute(builder: (BuildContext context) {
-            return HomeScreen();
+          MaterialPageRoute(builder: (BuildContext context) {
+            return const HomeScreen();
           }), (Route<dynamic> route) => false);
     });
   }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:my_nit/Widgets/menu.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -12,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
 
   bool showBottomMenu = false;
-
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +25,21 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
-            title: Text('My Nit', style: TextStyle(color: Colors.black45),),
+            title: const Text('My Nit', style: TextStyle(color: Colors.black45),),
             actions: [
-              IconButton(onPressed: (){}, icon: Icon(Icons.settings), color: Colors.black45,)
+              IconButton(onPressed: (){}, icon: const Icon(Icons.settings), color: Colors.black45,)
             ],
             centerTitle: true,
           ),
           body: GestureDetector(
             onPanEnd: (details){
               if(details.velocity.pixelsPerSecond.dy > threshold) {
-                this.setState(() {
+                setState(() {
                   showBottomMenu = false;
                 });
               }
               else if (details.velocity.pixelsPerSecond.dy < -threshold){
-                this.setState(() {
+                setState(() {
                   showBottomMenu = true;
                 });
               }
@@ -49,9 +49,22 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
               color: Colors.white,
               child: Stack(
                 children: [
-
+                  Positioned.fill(
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: const [
+                            SizedBox(height: 70,),
+                            Text('data')],
+                        ),
+                      ),
+                    ),
+                  ),
+                  
                   AnimatedOpacity(
-                    duration: Duration(milliseconds: 200),
+                    duration: const Duration(milliseconds: 450),
                     opacity: (showBottomMenu)?1.0:0.0,
                     child: BackdropFilter(filter: ImageFilter.blur(sigmaX: 5.0,sigmaY: 5.0),
 
@@ -62,10 +75,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
 
                   AnimatedPositioned(
                       curve: Curves.easeInOut,
-                      duration: Duration(milliseconds: 450),
+                      duration: const Duration(milliseconds: 450),
                       left: 0,
                       bottom: (showBottomMenu)?-20:-(height * 3 / 4),
-                      child: MenuWidget()
+                      child: const MenuWidget()
                   )
                 ],
               ),
