@@ -11,7 +11,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.tealAccent,
+      backgroundColor: Colors.teal,
       body: Center(
         child: Text('My Nit', style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),),
       ),
